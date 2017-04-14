@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 class MyAdapter(myDataset: Array<String?>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    private var mDataset = arrayOfNulls<String>(20)
+    private var mDataset = arrayOfNulls<String>(3)
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         var mTextView: TextView

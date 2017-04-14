@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    private val myDataset = arrayOfNulls<String>(20)
+    private val myDataset = arrayOfNulls<String>(10)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
