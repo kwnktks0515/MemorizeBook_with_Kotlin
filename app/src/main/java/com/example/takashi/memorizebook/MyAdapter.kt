@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 class MyAdapter(myDataset: Array<String?>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    private var mDataset = arrayOfNulls<String>(3)
+    private var mDataset = mutableListOf<String>()
+
+    init {
+        mDataset = (myDataset as Array<String>).toMutableList()
+    }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        var mTextView: TextView
+        val mTextView: TextView
 
         init {
             mTextView = v.findViewById(R.id.textView) as TextView
         }
-    }
-
-    fun MyAdapter(myDataset: Array<String?>) {
-        mDataset = myDataset
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
