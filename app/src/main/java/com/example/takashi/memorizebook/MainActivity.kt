@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.content.res.AssetManager;
+import java.io.*
 
 class MainActivity : AppCompatActivity() {
-    private val myDataset = arrayOfNulls<String>(10)
+    private var myDataset = arrayOfNulls<String>(5)
+    private var assetManager: AssetManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,5 +27,17 @@ class MainActivity : AppCompatActivity() {
         }
         val mAdapter = MyAdapter(myDataset)
         mRecyclerView.adapter = mAdapter
+        assetManager = getResources().getAssets() as AssetManager
+        println(book_list())
     }
+
+    fun book_list(): List<String> =
+        assetManager!!.list("").mapNotNull {
+            val word = it.split(".")
+            if(word.size == 2 && word[1] == "csv") {
+                word[0]
+            } else {
+                null
+            }
+        }
 }
