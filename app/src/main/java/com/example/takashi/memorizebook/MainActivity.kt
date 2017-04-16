@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.content.res.AssetManager;
-import java.io.*
 
 class MainActivity : AppCompatActivity() {
     private var myDataset = arrayOfNulls<String>(5)
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         for (i in 0..myDataset.size - 1) {
             myDataset[i] = "Data_0" + i.toString()
         }
-        val mAdapter = MyAdapter(myDataset)
+        val mAdapter = MyAdapter(this, myDataset)
         mRecyclerView.adapter = mAdapter
         assetManager = getResources().getAssets() as AssetManager
         println(book_list())
