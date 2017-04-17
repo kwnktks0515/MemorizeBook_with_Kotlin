@@ -1,15 +1,14 @@
 package com.example.takashi.memorizebook
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.content.res.AssetManager;
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private var myDataset = arrayOfNulls<String>(5)
-    private var assetManager: AssetManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +25,8 @@ class MainActivity : AppCompatActivity() {
         }
         val mAdapter = MyAdapter(this, myDataset)
         mRecyclerView.adapter = mAdapter
-        assetManager = getResources().getAssets() as AssetManager
         println(book_list())
     }
 
-    fun book_list(): List<String> =
-        assetManager!!.list("").mapNotNull {
-            val word = it.split(".")
-            if(word.size == 2 && word[1] == "csv") {
-                word[0]
-            } else {
-                null
-            }
-        }
+    fun book_list(): List<String> = getResources().getAssets().list("").filter { File(it).extension == "csv" }
 }
