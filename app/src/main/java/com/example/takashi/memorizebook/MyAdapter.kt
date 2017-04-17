@@ -36,12 +36,12 @@ class MyAdapter(activity: Activity, myDataset: Array<String?>) : RecyclerView.Ad
         holder.mTextView.text = mDataset[position]
         holder.mTextView.setOnClickListener {
             holder.mTextView.text = "remove"
-            val intent = Intent(mActivity, SubActivity::class.java) as Intent
+            val intent = Intent(mActivity, SubActivity::class.java)
+            intent.putExtra("FileName", mDataset[position])
             mActivity!!.startActivity(intent);
+            mActivity!!.overridePendingTransition(R.anim.in_anim, R.anim.out_anim)
         }
     }
 
-    override fun getItemCount(): Int {
-        return mDataset.size
-    }
+    override fun getItemCount(): Int = mDataset.size
 }
