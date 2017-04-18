@@ -13,7 +13,7 @@ class MyAdapter(activity: Activity, myDataset: Array<String?>) : RecyclerView.Ad
     private var mActivity: Activity? = null
 
     init {
-        mDataset = (myDataset as Array<String>).toMutableList()
+        mDataset = myDataset.filterNotNull().toMutableList()
         mActivity = activity
     }
 
